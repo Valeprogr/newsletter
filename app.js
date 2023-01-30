@@ -22,8 +22,22 @@ app.post("/", (req,res)=>{
     let firstName= req.body.fName;
     let lastName=  req.body.lName;
     let email = req.body.email;
-    console.log(firstName, lastName, email )
-})
+    //console.log(firstName, lastName, email )
+    let data = {
+        members:[
+            {
+                email_address: email,
+                status: "subscribed",
+                merge_fields: {
+                FNAME: firstName ,
+                LNAME: lastName 
+                }
+            }
+        ]
+    }
+    let jsonData= JSON.stringify(data);
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server started on PORT ${PORT}!`);
 })
